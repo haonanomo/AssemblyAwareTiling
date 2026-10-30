@@ -7,9 +7,7 @@ Assembly-aware Tiling for Standing Polyominoes (SIGGRAPH Asia 2026)
 ## Installation
 
 - **Platform:** Linux or Windows with WSL2 for GPU acceleration. On native Windows, JAX supports CPU only.
-- **Libraries:** JAX, Haiku, Optax, MCTX, PyTorch, Newton, Warp, and cuRobo.
-
-Run installation and all commands below from the project directory.
+- **Python:** >=3.11.
 
 ```bash
 pip install -e .
@@ -25,7 +23,7 @@ pip install -e .
 
 ### Training
 
-- **Input:** 16x16 PNG masks, a JAX tiling stability checker, and an optional sequence policy.
+- **Input:** PNG masks, a JAX tiling stability checker, and an optional sequence policy.
 - **Output:** Tiling policy checkpoints, tiled boards, and stability training data.
 
 ```bash
@@ -60,7 +58,7 @@ python train_seq.py --board_dir <board_dir>
 
 ### Inference
 
-- **Input:** Tiled boards, IK tables, and a sequence policy; MCTS also requires a JAX sequence stability checker.
+- **Input:** Tiled boards, IK tables, a sequence policy, and a JAX sequence stability checker.
 - **Output:** Tiled boards and piece states.
 
 ```bash
@@ -69,7 +67,7 @@ python infer_seq.py --board_dir <board_dir>
 
 ## Stability Checker
 
-Checker training uses PyTorch; MCTS in both Tiling and Sequence uses JAX. Convert PyTorch checkpoints to JAX with `convert_checker_til.py` or `convert_checker_seq.py` in the stability module. Note that untiled regions are treated as connected rigid pieces for Tiling and as virtual support for Sequence.
+Checker training uses PyTorch; MCTS in both tiling and sequence uses JAX. Convert PyTorch checkpoints to JAX with `convert_checker_til.py` or `convert_checker_seq.py` in the stability module. Note that untiled regions are treated as connected rigid pieces for tiling and as virtual support for sequence.
 
 ### Training
 
